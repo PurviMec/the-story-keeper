@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const reviewSchema = require('./Review');
+const dateFormat = require('../utils/dateFormat'); 
 
 // add price to add more function in furture
 const bookSchema = new Schema(
@@ -20,7 +21,7 @@ const bookSchema = new Schema(
     publish:{
         type:Date,
         default:undefined,
-        //get: timestamp => dateFormat(timestamp)
+        get: timestamp => dateFormat(timestamp)
     },
     rent: {
       type: Number,
@@ -37,10 +38,16 @@ reviews: [reviewSchema]
 },
 {
   toJSON: {
-    getters: true
+    getters: true,
+    virtuals: true
   }
 }
 );
+
+bookSchema.virtual('reviewCount').get(function() {
+  return this.review.length;
+});
+
 
 const Book = model('Book', bookSchema);
 

@@ -26,10 +26,10 @@ const userSchema = new Schema(
         ref: 'Book'
       }
     ],
-    // favouriteList:[{
-    //   type: Schema.Types.ObjectId,
-    //   ref:'Book'
-    // }]
+    favouriteList:[{
+      type: Schema.Types.ObjectId,
+      ref:'Book'
+    }]
   },
   {
     toJSON: {
