@@ -4,13 +4,24 @@ const { AuthenticationError } = require("apollo-server-express");
 
 const resolvers = {
     Query: {
-  
+      users: async () => {
+        return User.find()
+          .select('-__v -password')
+          .populate('borrowList')
+          .populate('favouriteList');
+      },
+
+      user: async (parents, args) => {
+        const user = await User.findOne({ username: args.username })
+        return user;
+      },
+
       me: async (parent, args, context) => {
-        if (context.user) {
-          const userData = await User.findOne({ _id: context.user._id })
+        if (args._id) {
+          const userData = await User.findOne({ _id: args._id })
             .select('-__v -password')
-            .populate('thoughts')
-            .populate('friends');
+            .populate('borrowList')
+            .populate('favoutiteList');
       
           return userData;
         }
@@ -23,14 +34,39 @@ const resolvers = {
                 .populate('reviews')
         },
         book: async (parent,args ) => {
-            return Book.findById({ _id: args._id })
+          if(args._id){
+            const bookData = await Book.findOne({ _id: args._id })
                 .select('-__v')
                 .populate('reviews')
+            return bookData;    
+          }
+          throw new AuthenticationError('No book found with this id!');      
         },
-        favouriteList: async (parents, args, context) => {
-            return User.findOne({ username: context.user.username })
+
+        booksByGenere: async (parent,args ) => {
+          return Book.find({ genere: args.genere })
+              .select('-__v')
+              .populate('reviews')
+        },
+
+        booksByAuthor: async (parent,args ) => {
+          return Book.find({ author: args.author })
+            .select('-__v')
+            .populate('reviews')
+        },
+        booksByTitle: async (parent,args ) => {
+          return Book.find({ title: args.title })
+            .select('-__v')
+            .populate('reviews')
+        },
+        favouriteList: async (parents, args) => {
+          if(args.username){
+            const list = await User.find({ username: args.username })
                 .select('-__v -password')
-                .populate('favouriteList');   
+                .populate('favouriteList');
+            return list;
+          } 
+          throw new AuthenticationError('Please logIn or create account');       
         }
     },
 
@@ -53,86 +89,75 @@ const resolvers = {
       },
           //addUser(username: String!, email: String!, password: String!) :Auth
         
-          addUser: async (parent, args) => {
+        addUser: async (parent, args) => {
             
-              const user = await User.create(args);
+          const user = await User.create(args);
       
-              const token = signToken(user);
-              return { token, user };
+          const token = signToken(user);
+          return { token, user };
             
-          },
-          addBook: async (parent, args, context) => {
-            const books = async () => {
-              return Book.find()
-                .select('-__v -password')
-                .populate('borrowList')
-                .populate('favouriteList');
-            }
-            if (context.user) {
-              return Book.create({ title: args.title, description: args.description, author: args.author, publish: args.publish, genere: args.genere})
-            }
-            return books;
-          },
+      },
+      addBook: async (parent, args) => {
+        const newBook = await Book.create({ title: args.title, description: args.description, author: args.author, publish: args.publish, genere: args.genere, rent: args.rent})
+        return newBook;
       
-          addReview: async (parent, args, context) => {
-              if (context.user) {
-                  const updatedUser = await User.findByIdAndUpdate (
-                      { id: context.user._id},
-                      { $push: { reviews: args.reviewText }},
-                      { new: true, runValidators: true }
-                  );
-
-                  return updatedUser;
-              }
-          },
+      },
+      
+       addReview: async (parent, args, context ) => {
+        if (context.user) {
+            
+          const updatedBook = await Book.findOneAndUpdate(
+            { _id: args.bookId },
+            { $push: { reviews: { reviewText: args.reviewText, username: args.username } } },
+            { new: true, runValidators: true }
+          );
+  
+          return updatedBook;
+        
+        }
+        throw new AuthenticationError('You need to be logged in!');
+      },
       
           //favouriteList(input:favouriteList!):User
-          favouriteList: async (parent, args, context) => {
-            if (context.user) {
-              const updatedUser = await User.findByIdAndUpdate(
-                { id: context.user._id },
-                // take the input type to replace "body" as the arguement
-                { $addToSet: { favouriteLists: args.input } },
-                { new: true, runValidators: true }
-              );
-      
-              return updatedUser;
-            }
-      
-            throw new AuthenticationError("You need to be logged in!");
-          },
-      
-          //removeFavouriteBook(bookId: ID!): User
-          removeFavouriteBook: async (parent, args, context) => {
-            if (context.user) {
-              const updatedUser = await User.findOneAndUpdate(
-                { _id: context.user._id },
-                { $pull: { favouriteLists: { bookId: args.bookId } } },
-                { new: true }
-              );
-      
-              return updatedUser;
-            }
-      
-            throw new AuthenticationError("You need to be logged in!");
-          },
+      favouriteList: async (parent, { input }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { favouriteList: input } },
+            { new: true, runValidators: true }
+          );
+            return updatedUser;
+          }
+        throw new AuthenticationError("You need to be logged in!");
+      },
+
+      removeFavouriteBook: async (parent, { bookId }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { favouriteList: { bookId: bookId } } },
+            { new: true }
+          );
+          return updatedUser;
+        }
+        throw new AuthenticationError("You need to be logged in!");
+      },
+        
           
           // borrowList(input:borrowList!):User
-          borrowList: async (parent, args, context) => {
-            if (context.user) {
-              const updatedUser = await User.findByIdAndUpdate(
-                { id: context.user._id },
-                // take the input type to replace "body" as the arguement
-                { $addToSet: { borrowLists: args.input } },
-                { new: true, runValidators: true }
-              );
-      
-              return updatedUser;
-            }
-      
-            throw new AuthenticationError("You need to be logged in!");
-          },      
+      borrowList: async (parent, { input }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { borrowList: input } },
+            { new: true, runValidators: true }
+          );
+          return updatedUser;
+        }
+        throw new AuthenticationError("You need to be logged in!");
+      },
     }
+    
 };
 
 module.exports = resolvers;

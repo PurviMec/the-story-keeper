@@ -14,6 +14,7 @@ const reviewSchema = new Schema(
     },
     createdAt: {
       type: Date,
+      default: Date.now(),
       get: timestamp => dateFormat(timestamp)
     }
   },

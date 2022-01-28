@@ -76,7 +76,7 @@ db.once("open", async () => {
   
       await Book.updateOne(
         { _id: bookId },
-        { $push: { reactions: { reviewText, username } } },
+        { $push: { reviews: { reviewText, username } } },
         { runValidators: true }
       );
     }

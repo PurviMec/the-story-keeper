@@ -20,7 +20,7 @@ const typeDefs = gql`
         genere: String
     }
 
-    type Review{
+    type Review {
         _id:ID
         reviewText: String
         username: String
@@ -47,19 +47,24 @@ const typeDefs = gql`
     }
 
     type Query{
-        me:User
+        me(_id: ID!):User
+        users: [User]
         books: [Book]
+        user(username: String): User
         book(_id: ID!): Book
-        favouriteList(username: String): User
+        favouriteList(username: String): [Book]
+        booksByGenere(genere: String): [Book]
+        booksByAuthor(author: String): [Book]
+        booksByTitle(title: String): [Book] 
     }
 
     type Mutation{
-        login(username: String!, Password: String!) :Auth
+        login(email: String!, password: String!) :Auth
         addUser(username: String!, email: String!, password: String!) :Auth
-        favouriteList(input:favouriteList!): User
+        favouriteList(input: favouriteList!): User
         removeFavouriteBook(bookId: ID!): User 
-        borrowList(input:borrowList!): User
-        addBook(title:String!, description:String!, author:String, rent:Int, genere:String): Book
+        borrowList(input: borrowList!): User
+        addBook(title:String!, description:String!, author:String!, rent:Int, genere:String!): Book
         addReview(reviewText: String!, bookId: ID!): Book
     }
 `;
