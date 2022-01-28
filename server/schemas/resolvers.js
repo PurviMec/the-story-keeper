@@ -22,8 +22,8 @@ const resolvers = {
                 .select('-__v ')
                 .populate('reviews')
         },
-        book: async (parent,args, context, ) => {
-            return Book.findOne({ _id: context.book._id })
+        book: async (parent,args ) => {
+            return Book.findById({ _id: args._id })
                 .select('-__v')
                 .populate('reviews')
         },
@@ -35,33 +35,31 @@ const resolvers = {
     },
 
     Mutation: {
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+      login: async (parent, { email, password }) => {
+        const user = await User.findOne({ email });
       
-            if (!user) {
-              throw new AuthenticationError("Incorrect credentials");
-            }
+        if (!user) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
       
-            const correctPw = await user.isCorrectPassword(password);
+        const correctPw = await user.isCorrectPassword(password);
       
-            if (!correctPw) {
-              throw new AuthenticationError("Incorrect credentials");
-            }
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
       
-            const token = signToken(user);
-            return { token, user };
-          },
+        const token = signToken(user);
+        return { token, user };
+      },
           //addUser(username: String!, email: String!, password: String!) :Auth
+        
           addUser: async (parent, args) => {
-            try {
+            
               const user = await User.create(args);
       
               const token = signToken(user);
               return { token, user };
-            } 
-            catch (err) {
-              console.log(err);
-            }
+            
           },
           addBook: async (parent, args, context) => {
             const books = async () => {
