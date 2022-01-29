@@ -7,8 +7,8 @@ const BookList = (books, title) => {
 
   return (
     <div>
-      <h3>{books}</h3>
-      {/* {books &&
+      <h3>{title}</h3>
+      {books &&
         books.map(book => (
           <div key={book._id} className="card mb-3">
             <p className="card-header">
@@ -23,7 +23,7 @@ const BookList = (books, title) => {
               </p>
             </div>
           </div>
-        ))} */}
+        ))}
     </div>
   );
 };
