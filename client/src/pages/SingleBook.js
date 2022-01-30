@@ -24,9 +24,9 @@ const SingleBook = (props) => {
 
   return (
     <main className="row">
-      <div className="card m-3 card-title flex-column col-10">
+      <div className="card m-3 flex-column col-10">
         <img src={singleBook} className="card-img-top book-img col-5" alt="/" />
-        <h3 className=" col-5">{book.title}</h3>
+        <h3 className=" col-5 card-title ">{book.title}</h3>
         <div className="card-body row">
           <h5>Genere: {""} </h5>
           <span>{book.genere}</span>
@@ -38,7 +38,7 @@ const SingleBook = (props) => {
         </div>
       </div>
 
-      {book.reviewsCount > 0 && <ReviewList reviews={book.reviews} />}
+      {book.reviews.length > 0 && <ReviewList reviews={book.reviews} />}
     </main>
   );
 };

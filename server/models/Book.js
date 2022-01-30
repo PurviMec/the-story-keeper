@@ -39,14 +39,14 @@ reviews: [reviewSchema]
 {
   toJSON: {
     getters: true,
-    virtual: true
+    //virtual: true
   }
 }
 );
 
-bookSchema.virtual('reviewsCount').get(function() {
-  return this.review.length;
-});
+// bookSchema.virtual('reviewCount').get(function() {
+//   return this.reviews.length;
+// });
 
 
 const Book = model('Book', bookSchema);
