@@ -24,7 +24,7 @@ export const QUERY_BOOKS = gql`
 
 export const QUERY_BOOK = gql`
 
-    query book($_id: ID!) {
+    query book($id: ID!) {
         book(_id: $id) {
             _id
             title

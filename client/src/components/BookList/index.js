@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const BookList = ({ books, title }) => {
-  
   if (!books.length) {
     return <h3>No books Yet</h3>;
   }
@@ -10,22 +10,23 @@ const BookList = ({ books, title }) => {
     <div>
       <h3>{title}</h3>
       {books &&
-        books.map(book => (
+        books.map((book) => (
           <div key={book._id} className="card mb-3">
-            <h2>{book.title}</h2>
-            
-            <div className="card-body">
-            <p className="card-header">
-              Genere: {' '} {book.genere}
-            </p>
+            <Link to={`/book/${book._id}`}>
+              <h2 className="card-header">{book.title}</h2>
+            </Link>
 
-            <p className="card-header">
-              By {''}{book.author} On {book.publish}
-              {''} Rent: {book.rent}
-            </p>
+            <div className="card-body">
+              <p>Genere: {book.genere}</p>
+
+              <p>
+                By {""}
+                {book.author} On {book.publish}
+                {""} Rent: {book.rent}
+              </p>
               <p className="mb-0">
-                Reviews: {book.reviewsCount} || Click to{' '}
-                {book.reviewsCount ? 'see' : 'start'} the discussion!
+                Reviews: {book.reviewsCount} || Click to{" "}
+                {book.reviewsCount ? "see" : "start"} the discussion!
               </p>
             </div>
           </div>
