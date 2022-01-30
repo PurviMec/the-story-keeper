@@ -39,7 +39,7 @@ reviews: [reviewSchema]
 {
   toJSON: {
     getters: true,
-    virtuals: true
+    virtual: true
   }
 }
 );
