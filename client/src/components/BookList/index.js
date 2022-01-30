@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const BookList = ({ books, title }) => {
   if (!books.length) {
     return <h3>No books Yet</h3>;
@@ -25,8 +26,8 @@ const BookList = ({ books, title }) => {
                 {""} Rent: {book.rent}
               </p>
               <p className="mb-0">
-                Reviews: {book.reviewsCount} || Click to{" "}
-                {book.reviewsCount ? "see" : "start"} the discussion!
+                Reviews: {book.reviews.length} || Click here{" "}
+                {book.reviews.length ? "see" : "start"} leave review!
               </p>
             </div>
           </div>
