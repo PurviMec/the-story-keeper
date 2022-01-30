@@ -17,8 +17,8 @@ const resolvers = {
       },
 
       me: async (parent, args, context) => {
-        if (args._id) {
-          const userData = await User.findOne({ _id: args._id })
+        if (context.user._id) {
+          const userData = await User.findOne({ _id: context.user._id })
             .select('-__v -password')
             .populate('borrowList')
             .populate('favoutiteList');

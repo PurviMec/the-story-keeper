@@ -31,8 +31,26 @@ const Login = (props) => {
           <h4 className="card-header">Login</h4>
           <div className="card-body">
             <form onSubmit={handleFormSubmit}>
+              <div className="mb-3">
+                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                <input name="email" type="email" id="email" className="form-control" placeholder="Your email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                <input type="password" name="password" className="form-control" id="password" placeholder="******"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <button className="btn d-block w-100 btn-primary" type="submit">Submit</button>
+            </form>
+            {/* <form onSubmit={handleFormSubmit}>
               <input
-                className="form-input"
+                className="form-input m-4"
                 placeholder="Your email"
                 name="email"
                 type="email"
@@ -41,7 +59,7 @@ const Login = (props) => {
                 onChange={handleChange}
               />
               <input
-                className="form-input"
+                className="form-input m-4"
                 placeholder="******"
                 name="password"
                 type="password"
@@ -49,10 +67,10 @@ const Login = (props) => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className="btn d-block w-100" type="submit">
+              <button className="btn d-block w-100 btn-primary" type="submit">
                 Submit
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>

@@ -22,10 +22,11 @@ const SingleBook = (props) => {
   }
 
   return (
-    <section className='row'>
-      <div className="card m-3 book-head flex-column col-10" >
+
+    <container className='row'>
+      <div className="card m-3 card-title flex-column col-10" >
         <img src={singleBook} className="card-img-top book-img col-5" alt="/"/> 
-        <h3 className="card-title col-5">{book.title}</h3>
+        <h3 className=" col-5">{book.title}mtfxrgjmn</h3>
       <div className="card-body row">
         
 
@@ -40,7 +41,7 @@ const SingleBook = (props) => {
       {book.reviewCount > 0 && (
         <ReviewList reviews={book.reviews} />
       )}
-    </section>
+    </container>
   );
 };
 

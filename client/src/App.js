@@ -7,9 +7,9 @@ import Footer from './components/Footer';
 
  import Login from './pages/Login';
 // import NoMatch from './pages/NoMatch';
- import SingleBook from './pages/SingleBook';
-// import Profile from './pages/Profile';
- import Signup from './pages/SignUp';
+import SingleBook from './pages/SingleBook';
+import Profile from './pages/Profile';
+import Signup from './pages/SignUp';
 
 import Home from "./pages/Home";
 const httpLink = createHttpLink({
@@ -32,7 +32,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            {/* <Route exact path="/profile" component={Profile} /> */}
+            <Route exact path="/profile" component={Profile} />
             <Route exact path="/book" component={SingleBook} />
           </div>
         <Footer />
