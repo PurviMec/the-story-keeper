@@ -1,9 +1,10 @@
 import React from 'react';
 
-const BookList = (books, title) => {
-//   if (!books.length) {
-//     return <h3>No books Yet</h3>;
-//   }
+const BookList = ({ books, title}) => {
+  
+  if (!books.length) {
+    return <h3>No books Yet</h3>;
+  }
 
   return (
     <div>
@@ -11,15 +12,20 @@ const BookList = (books, title) => {
       {books &&
         books.map(book => (
           <div key={book._id} className="card mb-3">
-            <p className="card-header">
-              {book.author}
-              thought on {book.createdAt}
-            </p>
+            <h2>{book.title}</h2>
+            
             <div className="card-body">
-              <p>{book.description}</p>
+            <p className="card-header">
+              Genere: {' '} {book.genere}
+            </p>
+
+            <p className="card-header">
+              By {''}{book.author} On {book.publish}
+              {''} Rent: {book.rent}
+            </p>
               <p className="mb-0">
-                Reviews: {book.reviews} || Click to{' '}
-                {book.reviewCount ? 'see' : 'start'} the discussion!
+                Reviews: {book.reviewsCount} || Click to{' '}
+                {book.reviewsCount ? 'see' : 'start'} the discussion!
               </p>
             </div>
           </div>

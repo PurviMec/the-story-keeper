@@ -20,7 +20,7 @@ const Home = () => {
         {loading ? (
             <div>Loading...</div>
         ) : (
-            <BookList books={books} title="Some Feed for Thought(s)..." />
+            <BookList books = {books} title="Some Feed for Thought(s)..." />
         )} 
         </div>
             </div>

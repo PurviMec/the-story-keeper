@@ -44,7 +44,7 @@ reviews: [reviewSchema]
 }
 );
 
-bookSchema.virtual('reviewCount').get(function() {
+bookSchema.virtual('reviewsCount').get(function() {
   return this.review.length;
 });
 
