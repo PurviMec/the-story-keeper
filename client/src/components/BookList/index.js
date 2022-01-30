@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookList = ({ books, title}) => {
+const BookList = ({ books, title }) => {
   
   if (!books.length) {
     return <h3>No books Yet</h3>;

@@ -24,7 +24,7 @@ export const QUERY_BOOKS = gql`
 
 export const QUERY_BOOK = gql`
 
-    query book($id: ID!) {
+    query book($_id: ID!) {
         book(_id: $id) {
             _id
             title
@@ -42,4 +42,48 @@ export const QUERY_BOOK = gql`
         }
     }
   
+`;
+
+export const QUERY_ME = gql`
+    {
+        me {
+            _id
+            username
+            email
+            borrowList{
+                title
+                description
+                author
+                publish
+            }
+            favouriteList{
+                title
+                description
+                author
+                publish
+            }
+        }
+    }
+`;
+
+export const QUERY_USER = gql`
+    query user($username: String!) {
+        user(username: $username) {
+            _id
+            username
+            email
+            borrowList{
+                title
+                description
+                author
+                publish
+            }
+            favouriteList{
+                title
+                description
+                author
+                publish
+            }
+        }
+    }
 `;
