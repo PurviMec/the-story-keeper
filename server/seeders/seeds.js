@@ -32,7 +32,7 @@ db.once("open", async () => {
     
     for (let i = 0; i < 100; i += 1 ) {
       const randomBookIndex = Math.floor(Math.random() * createdBooks.length);
-      const { _id: bookId, title, description, author, publish } = createdBooks[randomBookIndex];
+      const { _id: bookId, title:title, description, author, publish } = createdBooks[randomBookIndex];
       
       const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
       //const { username } = createdUsers.ops[randomUserIndex];
@@ -50,19 +50,19 @@ db.once("open", async () => {
     //create favouriteList
     for (let i = 0; i < 100; i += 1 ) {
       const randomBookIndex = Math.floor(Math.random() * createdBooks.length);
-      const { _id: bookId, title, description, author, publish } = createdBooks[randomBookIndex];
+      const { _id: bookId, title:title, description, author, publish } = createdBooks[randomBookIndex];
       
       const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
       const { username } = createdUsers.ops[randomUserIndex];
       const { _id: userId } = createdUsers.ops[randomUserIndex];
 
-      const updatedUser = await User.updateOne(
+      const updatedUser2 = await User.updateOne(
         { _id: userId },
         { $push: { favouriteList: { _id: bookId, title, description, author, publish, username } } },
         { runValidators: true }
       )
 
-      userData.push(updatedUser);
+      userData.push(updatedUser2);
     }
 
     for (let i = 0; i < 100; i += 1) {

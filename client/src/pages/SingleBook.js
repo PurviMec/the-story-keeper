@@ -37,7 +37,7 @@ const SingleBook = (props) => {
         <a href="#" className="card-link" alt="/">Add to favourite</a>    */}
         </div>
       </div>
-
+      
       {book.reviews.length > 0 && <ReviewList reviews={book.reviews} />}
     </main>
   );

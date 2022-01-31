@@ -73,12 +73,14 @@ export const QUERY_USER = gql`
             username
             email
             borrowList{
+                _id
                 title
                 description
                 author
                 publish
             }
             favouriteList{
+                _id
                 title
                 description
                 author

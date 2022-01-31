@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//import addBook from "../../images/addBook.png"
 
 
 const BookList = ({ books, title }) => {
@@ -29,6 +30,12 @@ const BookList = ({ books, title }) => {
                 Reviews: {book.reviews.length} || Click here{" "}
                 {book.reviews.length ? "see" : "start"} leave review!
               </p>
+              {/* <p>
+                Add to Favourite:
+                <Link to={`/profile`}>  
+                  <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="image add fav book list"/>
+                </Link>
+              </p> */}
             </div>
           </div>
         ))}
