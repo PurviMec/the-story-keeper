@@ -56,4 +56,37 @@ export const ADD_BOOK = gql`
       }
     }
   }
-`
+`;
+
+export const ADD_FAVOURITE = gql`
+  mutation favouriteList($input: favouriteList) {
+    favouriteList(input: $input) {
+      _id
+      favouriteList {
+        _id
+        title
+        description
+        author
+        publish
+      }
+    }
+  }
+`;
+
+export const REMOVE_FAVOURITE = gql`
+  mutation removeFavouriteBook($bookId: String!) {
+    removeFavouriteBook(bookId: $bookId) {
+      _id
+      username
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        image
+        link
+        title
+        description
+      }
+    }
+  }
+`;

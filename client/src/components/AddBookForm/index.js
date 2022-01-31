@@ -2,34 +2,32 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_BOOK } from '../../utils/mutations';
+//import { QUERY_BOOKS } from '../../utils/queries';
 
 
 const AddBookForm = () => {
-    const [ args, setArgs] = useState('');
-    const [characterCount, setCharacterCount] = useState(0);
+    const [ bookBody , setBody] = useState('');
+
     const [addBook] = useMutation(ADD_BOOK);
 
     const handleChange = (event) => {
-        if (event.target.value.length) {
-            setArgs(event.target.value);
-            setCharacterCount(event.target.value.length);
-        }
+        const name = event.target.name;
+        const value = event.target.value;
+        setBody(values => ({...values, [name]: value}))
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+        console.log(bookBody);
         try {
             await addBook ({
-                variables: { args }
+                variables: { bookBody }
             });
-            setArgs("");
+            setBody("");
         } catch (e) {
             console.error(e);
         }
     }
-        
-   
     return(
         <div className='flex-row justify-center justify-space-between-md align-stretch'>
             <p className="card-header">
@@ -38,38 +36,47 @@ const AddBookForm = () => {
             <form className="card" onSubmit={handleFormSubmit}>
                 <div className="mb-3 mt-3">
                     <label  className="form-label">Book Title</label>
-                    <input type="text" className="form-control" id="" 
-                      value={args}
+                    <input  className="form-control" id="" 
+                      type="text" 
+                      name='title'
+                      value={bookBody.title || ""}
                       onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Genere</label>
-                    <input type="genere" className="form-control" id=""
-                      value={args}
-                      onChange={handleChange}
+                    <input className="form-control" id=""
+                      type="text" 
+                      name='genere'
+                      value={bookBody.genere || ""}
+                       onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
-                    Character Count: {characterCount}/280
                     <label className="form-label">Description</label>
-                    <input type="description" className ="form-control" id=""
-                      value={args}
-                      onChange={handleChange}
+                    <input className ="form-control" id=""
+                      type="text" 
+                      name='description'
+                      value={bookBody.description || ""}
+                       onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Rent</label>
-                    <input type="rent" className="form-control" id=""
-                      value={args}
-                      onChange={handleChange}
+                    <input className="form-control" id=""
+                      type="Number" 
+                      name='rent'
+                      value={bookBody.rent || ""}
+                       onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Author</label>
-                    <input type="author" className="form-control" id=""
-                      value={args}
-                      onChange={handleChange}
+                    <input className="form-control" id=""
+                      type="text" 
+                      name='author'
+                      value={bookBody.author || ""}
+                       onChange={handleChange}
                     />
                 </div>
                 <button type="submit" className ="btn btn-primary">Submit</button>
@@ -80,3 +87,6 @@ const AddBookForm = () => {
 }
 
 export default AddBookForm;
+
+    // 
+        

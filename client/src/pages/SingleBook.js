@@ -1,8 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import Auth from "../utils/auth"
 
 import ReviewList from "../components/ReviewList";
+import ReviewForm from "../components/ReviewForm";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_BOOK } from "../utils/queries";
@@ -40,6 +42,7 @@ const SingleBook = (props) => {
       </div>
       {/* <Link to={`/profile/${review.username}`} style={{ fontWeight: 700 }}></Link> */}
       {book.reviews.length > 0 && <ReviewList reviews={book.reviews} />}
+      {Auth.loggedIn() && <ReviewForm bookId={book._id} />}
     </main>
   );
 };

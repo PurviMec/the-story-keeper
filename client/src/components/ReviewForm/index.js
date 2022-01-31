@@ -3,10 +3,14 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_REVIEW } from '../../utils/mutations';
 
+// import { useQuery  } from '@apollo/client';
+// import { QUERY_USER } from '../../utils/queries';
+
 const ReviewForm = ({ bookId }) => {
   const [reviewText, setBody] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
   const [addReview, { error }] = useMutation(ADD_REVIEW);
+  // const { user }= useQuery(QUERY_USER);
 
   const handleChange = (event) => {
     if (event.target.value.length <= 280) {
@@ -17,12 +21,12 @@ const ReviewForm = ({ bookId }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(reviewText)
     try {
       await addReview({
         variables: { reviewText, bookId },
       });
-
+      
       // clear form value
       setBody('');
       setCharacterCount(0);
