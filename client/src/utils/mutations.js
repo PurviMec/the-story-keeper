@@ -23,3 +23,37 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_REVIEW = gql`
+  mutation addReview($reviewText: String!, $bookId: ID!) {
+    addReview(reviewText: $reviewText, bookId: $bookId) {
+      _id
+      reviews {
+        _id
+        reviewText
+        createdAt
+        username
+      }
+    }
+  }
+`;
+
+export const ADD_BOOK = gql`
+  mutation addBook($title:String!, $description:String!, $author:String!, $rent:Int, $genere:String!){
+    addBook (title:$title, description:$description, author:$author, rent:$rent, genere:$genere){
+      _id
+      title
+      description
+      author
+      rent
+      genere
+      publish
+      reviews{
+        _id
+        reviewText
+        username
+        createdAt
+      }
+    }
+  }
+`

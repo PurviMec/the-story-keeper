@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import ReviewList from "../components/ReviewList";
 
@@ -37,7 +38,7 @@ const SingleBook = (props) => {
         <a href="#" className="card-link" alt="/">Add to favourite</a>    */}
         </div>
       </div>
-      
+      {/* <Link to={`/profile/${review.username}`} style={{ fontWeight: 700 }}></Link> */}
       {book.reviews.length > 0 && <ReviewList reviews={book.reviews} />}
     </main>
   );
