@@ -28,6 +28,7 @@ const typeDefs = gql`
     }
 
     input favouriteList{
+        _id: ID
         title: String
         description: String
         author: String
@@ -35,6 +36,7 @@ const typeDefs = gql`
     }
 
     input borrowList{
+        _id: ID!
         title: String
         description: String
         author: String
