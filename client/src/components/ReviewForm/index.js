@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_REVIEW } from '../../utils/mutations';
 
 // import { useQuery  } from '@apollo/client';
-import { QUERY_ME} from '../../utils/queries';
+import { QUERY_BOOK} from '../../utils/queries';
 
 const ReviewForm = ({ bookId }) => {
   const [reviewText, setText] = useState('');
@@ -13,9 +13,9 @@ const ReviewForm = ({ bookId }) => {
     update(cache, { data: { addReview } }) {
       try {
       
-        const { reviews } = cache.readQuery({ query: QUERY_ME });
+        const { reviews } = cache.readQuery({ query: QUERY_BOOK });
         cache.writeQuery({
-          query: QUERY_ME,
+          query: QUERY_BOOK,
           data: { reviews: [addReview, ...reviews] },
         });
       } catch (e) {
@@ -23,7 +23,6 @@ const ReviewForm = ({ bookId }) => {
       }
     }
   });
-  // const { user }= useQuery(QUERY_USER);
 
   const handleChange = (event) => {
     if (event.target.value.length <= 280) {

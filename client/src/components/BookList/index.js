@@ -1,11 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-//import addBook from "../../images/addBook.png"
+import addBook from "../../images/addBook.png"
 import AddBookForm from "../AddBookForm";
 import Auth from '../../utils/auth';
+import { saveBookIds, getSavedBookIds } from "../../utils/localStorage";
+//import Profile from "../../pages/Profile";
+
+import { ADD_FAVOURITE } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 
 const BookList = ({ books, title }) => {
+  const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
+
+  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+  useEffect(() => {
+    // let isMounted = true; // note this flag denote mount status
+    return () => {
+      saveBookIds(savedBookIds);
+      // isMounted = false;
+    };
+  });
+
+  const [saveBook] = useMutation(ADD_FAVOURITE);
+
+  const handleSaveBook = async (bookId) => {
+    // find the book in `searchedBooks` state by the matching id
+    const bookToSave = books.find((book) => book.bookId === bookId);
+
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const response = await saveBook({
+        variables: {
+          input: bookToSave,
+        },
+      });
+
+      if (!response) {
+        throw new Error("something went wrong!");
+      }
+
+      // if book successfully saves to user's account, save book id to state
+      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (!books.length) {
     return <h3>No books Yet</h3>;
   }
@@ -41,12 +89,10 @@ const BookList = ({ books, title }) => {
                   Reviews: {book.reviews.length} || Click here{" "}
                   {book.reviews.length ? "see" : "start"} leave review!
                 </p>
-                {/* <p>
-                  Add to Favourite:
-                  <Link to={`/profile`}>  
-                    <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="image add fav book list"/>
-                  </Link>
-                </p> */}
+                <button onClick={() => handleSaveBook(book.bookId)}> 
+                    <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="add favourite"/>
+                  </button>  
+                 {/* <p><Profile>Go to fav list</Profile> </p> */}
               </div>
             </div>
           ))}

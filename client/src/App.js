@@ -7,6 +7,7 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+
 import { setContext } from '@apollo/client/link/context';
 
 import Header from "./components/Header";
@@ -45,13 +46,13 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
           <div className="container">
-            {/* <Switch> */}
+            
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/book/:id" component={SingleBook} />
-            {/* </Switch> */}
+            
           </div>
           <Footer />
         </div>

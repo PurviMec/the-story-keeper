@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/PurviMec/the-story-keeper#readme",
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^5.1.0"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",

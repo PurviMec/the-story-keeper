@@ -1,7 +1,8 @@
 import React from 'react';
 import BookList from '../components/BookList';
 
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
+
 
 import { QUERY_BOOKS } from '../utils/queries';
 
@@ -29,4 +30,3 @@ const Home = () => {
 };
 
 export default Home;
-  

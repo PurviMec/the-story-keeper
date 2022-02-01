@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import FavouriteList from '../components/FavouriteList';
 import BorrowList from '../components/BorrowList';
 
-import Auth from "../utils/auth"
+//import Auth from "../utils/auth"
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_USER } from '../utils/queries';
 
@@ -18,9 +18,9 @@ const Profile = (props) => {
 
     const user = data?.me || data?.user || {};
 
-    if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Redirect to="/profile" />;
-    }
+    // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    //     return <Redirect to="/profile" />;
+    // }
     
     if (!user?.username) {
         return (
@@ -33,6 +33,7 @@ const Profile = (props) => {
     if (loading) {
         return <div>Loading...</div>;
     }
+
 
     return (
         <div className='container w-100%'>

@@ -112,12 +112,12 @@ const resolvers = {
       
       },
       
-       addReview: async (parent, args, context ) => {
+       addReview: async (parent, {bookId, reviewText}, context ) => {
         if (context.user) {
             
           const updatedBook = await Book.findOneAndUpdate(
-            { _id: args.bookId },
-            { $push: { reviews: { reviewText: args.reviewText, username: args.username } } },
+            { _id: bookId },
+            { $push: { reviews: { reviewText, username: context.user.username } } },
             { new: true, runValidators: true }
           );
   
