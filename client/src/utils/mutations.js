@@ -71,13 +71,12 @@ export const ADD_FAVOURITE = gql`
 `;
 
 export const REMOVE_FAVOURITE = gql`
-  mutation removeFavouriteBook($bookId: String!) {
-    removeFavouriteBook(bookId: $bookId) {
+  mutation removeFavouriteBook($_id: ID) {
+    removeFavouriteBook(_id: _id) {
       _id
       username
-      bookCount
-      savedBooks {
-        bookId
+      removeFavouriteBook {
+        _id
         authors
         image
         link

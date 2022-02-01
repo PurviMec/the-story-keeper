@@ -23,7 +23,7 @@ const BookList = ({ books, title }) => {
     };
   });
 
-  const [saveBook] = useMutation(ADD_FAVOURITE);
+  const [addFavourite] = useMutation(ADD_FAVOURITE);
 
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
@@ -37,7 +37,7 @@ const BookList = ({ books, title }) => {
     }
 
     try {
-      const response = await saveBook({
+      const response = await addFavourite({
         variables: {
           input: bookToSave,
         },

@@ -14,20 +14,20 @@ const FavouriteList = ({ favouriteList}) => {
 
     const [removeBook, { error }] = useMutation(REMOVE_FAVOURITE);
 
-    const handleDeleteBook = async (bookId) => {
+    const handleDeleteBook = async (_id) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
     }
     try {
       const response = await removeBook({
-        variables: { bookId: bookId },
+        variables: { _id: favouriteList._id },
       });
 
       if (!response) {
         throw new Error("something went wrong!");
       }
-      removeBookId(bookId);
+      removeBookId(favouriteList._id);
     } catch (err) {
       console.error(error);
     }
@@ -43,7 +43,7 @@ const FavouriteList = ({ favouriteList}) => {
     return <p className="bg-dark text-light p-3"> add some books!</p>;
   }
 
-  const savedBookIds = userData.favouriteList.map((book) => book.bookId);
+  const savedBookIds = favouriteList.map((book) => book._id);
   saveBookIds(savedBookIds); 
 
   console.log(favouriteList);
