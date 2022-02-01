@@ -26,7 +26,7 @@ const SingleBook = (props) => {
   }
 
   return (
-    <main className="row">
+    <main className="row container mt-4">
       <div className="card m-3 flex-column col-10">
         <img src={singleBook} className="card-img-top book-img col-5" alt="/" />
         <h3 className=" col-5 card-title ">{book.title}</h3>

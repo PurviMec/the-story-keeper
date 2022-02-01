@@ -68,16 +68,16 @@ const BookList = ({ books, title }) => {
          )}
       </div>  
 
-      <div>
+      <div className="">
         <h3>{title}</h3>
         {books &&
           books.map((book) => (
-            <div key={book._id} className="card mb-3">
+            <div key={book._id} className="card">
               <Link to={`/book/${book._id}`}>
-                <h2 className="card-header">{book.title}</h2>
+                <h2 className="card-header row">{book.title}</h2>
               </Link>
 
-              <div className="card-body">
+              <div className="card-body m-0 p-0 col-9">
                 <p>Genere: {book.genere}</p>
 
                 <p>
@@ -86,13 +86,15 @@ const BookList = ({ books, title }) => {
                   {""} Rent: {book.rent}
                 </p>
                 <p className="mb-0">
-                  Reviews: {book.reviews.length} || Click here{" "}
-                  {book.reviews.length ? "see" : "start"} leave review!
+                  Reviews: {book.reviews.length}
                 </p>
+                
+                 {/* <p><Profile>Go to fav list</Profile> </p> */}
+              </div>
+              <div className="col-1 m-0 p-0">
                 <button onClick={() => handleSaveBook(book.bookId)}> 
                     <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="add favourite"/>
-                  </button>  
-                 {/* <p><Profile>Go to fav list</Profile> </p> */}
+                </button>  
               </div>
             </div>
           ))}

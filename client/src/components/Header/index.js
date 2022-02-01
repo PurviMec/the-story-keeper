@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
+import appLogo from "../../images/appLogo.png"
 
 const Header = () => {
   const logout = event => {
@@ -9,30 +10,33 @@ const Header = () => {
 };
 
   return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <nav className="text-center m-4">
-            <Link to="/">
+    <header className="bg-secondary ">
+      <div className=" container flex-row display-inline row">
+            <div className='col-2'><img src={appLogo} className='logo' alt="App-logo"></img></div>
+            <div className='col-4 mt-3'>
+              <Link to="/">
               <h1>THE STORY KEEPER</h1>
             </Link>
+            </div>
+          <div className='col-6 mt-3' >
+            <nav className="text-center m-2">  
             { Auth.loggedIn() ? (
               <>
                 <Link to="/profile">Me</Link>
                 <a href='/' onClick={logout}>
                   LogOut
                 </a>
-                Search
               </>
             ):(
               <>
                 <Link to="/login">Login</Link>
                 <Link to="/signup">Signup</Link>
                 <Link to="/profile">Profile</Link>
-                Search
               </>
             )}
         </nav>
-      </div>
+        </div>
+        </div>
     </header>
   );
 };

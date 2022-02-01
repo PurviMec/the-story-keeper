@@ -41,14 +41,14 @@ const AddBookForm = () => {
         }
     }
     return(
-        <div className='flex-row justify-center justify-space-between-md align-stretch'>
-            <p className="card-header">
+        <div className=' d-flex row justify-content-center m-4 '>
+            <p className="card-header text-center">
                 Add New Book 
             </p>
-            <form className="card" onSubmit={handleFormSubmit}>
-                <div className="mb-3 mt-3">
-                    <label  className="form-label">Book Title</label>
-                    <input  className="form-control" id="" 
+            <form className="card form col-lg-6" onSubmit={handleFormSubmit}>
+                <div className="mb-3 mt-3 ">
+                    <label  className="form-label card-title">Book Title</label>
+                    <input  className="form-control form-input" id="" 
                       type="text" 
                       name='title'
                       value={args.title || ""}
@@ -57,7 +57,7 @@ const AddBookForm = () => {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Genere</label>
-                    <input className="form-control" id=""
+                    <input className="form-control form-input" id=""
                       type="text" 
                       name='genere'
                       value={args.genere || ""}
@@ -66,7 +66,7 @@ const AddBookForm = () => {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Description</label>
-                    <input className ="form-control" id=""
+                    <textarea className ="form-control form-input" id=""
                       type="text" 
                       name='description'
                       value={args.description || ""}
@@ -75,7 +75,7 @@ const AddBookForm = () => {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Rent</label>
-                    <input className="form-control" id=""
+                    <input className="form-control form-input" id=""
                       type="Number" 
                       name='rent'
                       value={args.rent || ""}
@@ -84,14 +84,14 @@ const AddBookForm = () => {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Author</label>
-                    <input className="form-control" id=""
+                    <input className="form-control form-input" id=""
                       type="text" 
                       name='author'
                       value={args.author || ""}
                        onChange={handleChange}
                     />
                 </div>
-                <button type="submit" className ="btn btn-primary">Submit</button>
+                <button type="submit" className ="btn-secondary btn">Submit</button>
             </form>
         </div>
 
