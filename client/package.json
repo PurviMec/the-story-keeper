@@ -1,5 +1,5 @@
 {
-  "name": "mern-client",
+  "name": "the-story-keeper",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
@@ -22,12 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  
   "browserslist": {
     "production": [
       ">0.2%",

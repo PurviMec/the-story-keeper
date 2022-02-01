@@ -67,16 +67,16 @@ const BookList = ({ books, title }) => {
           </div>
          )}
       </div>  
-
-      <div className="">
+      <div>
         <h3>{title}</h3>
         {books &&
           books.map((book) => (
-            <div key={book._id} className="card">
+            <div key={book._id} className="card  row">
+              <div className="col-12">
               <Link to={`/book/${book._id}`}>
-                <h2 className="card-header row">{book.title}</h2>
+                <h2 className="card-header">{book.title}</h2>
               </Link>
-
+              </div>
               <div className="card-body m-0 p-0 col-9">
                 <p>Genere: {book.genere}</p>
 
@@ -91,14 +91,14 @@ const BookList = ({ books, title }) => {
                 
                  {/* <p><Profile>Go to fav list</Profile> </p> */}
               </div>
-              <div className="col-1 m-0 p-0">
+              <div className="col-2">
                 <button onClick={() => handleSaveBook(book.bookId)}> 
                     <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="add favourite"/>
                 </button>  
               </div>
             </div>
           ))}
-      </div>
+      </div>  
     </main>
   );
 };

@@ -13,12 +13,12 @@ const Header = () => {
     <header className="bg-secondary ">
       <div className=" container flex-row display-inline row">
             <div className='col-2'><img src={appLogo} className='logo' alt="App-logo"></img></div>
-            <div className='col-4 mt-3'>
+            <div className='col-6 mt-3'>
               <Link to="/">
               <h1>THE STORY KEEPER</h1>
             </Link>
             </div>
-          <div className='col-6 mt-3' >
+          <div className='col-4 mt-3' >
             <nav className="text-center m-2">  
             { Auth.loggedIn() ? (
               <>
