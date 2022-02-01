@@ -2,28 +2,40 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_BOOK } from '../../utils/mutations';
-//import { QUERY_BOOKS } from '../../utils/queries';
+import { QUERY_BOOKS } from '../../utils/queries';
 
 
 const AddBookForm = () => {
-    const [ bookBody , setBody] = useState('');
+    const [ args , setArgs] = useState('');
 
-    const [addBook] = useMutation(ADD_BOOK);
+    const [addBook] = useMutation(ADD_BOOK, {
+        update(cache, { data: { addBook } }) {
+          // read what's currently in the cache
+          const { books } = cache.readQuery({ query: QUERY_BOOKS});
+      
+          // prepend the newest thought to the front of the array
+          cache.writeQuery({
+            query: QUERY_BOOKS,
+            data: { books: [addBook, ...books] }
+          });
+        }
+      });
+      
 
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setBody(values => ({...values, [name]: value}))
+        setArgs(values => ({...values, [name]: value}))
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(bookBody);
+        console.log(args);
         try {
             await addBook ({
-                variables: { bookBody }
+                variables: { args }
             });
-            setBody("");
+            setArgs("");
         } catch (e) {
             console.error(e);
         }
@@ -39,7 +51,7 @@ const AddBookForm = () => {
                     <input  className="form-control" id="" 
                       type="text" 
                       name='title'
-                      value={bookBody.title || ""}
+                      value={args.title || ""}
                       onChange={handleChange}
                     />
                 </div>
@@ -48,7 +60,7 @@ const AddBookForm = () => {
                     <input className="form-control" id=""
                       type="text" 
                       name='genere'
-                      value={bookBody.genere || ""}
+                      value={args.genere || ""}
                        onChange={handleChange}
                     />
                 </div>
@@ -57,7 +69,7 @@ const AddBookForm = () => {
                     <input className ="form-control" id=""
                       type="text" 
                       name='description'
-                      value={bookBody.description || ""}
+                      value={args.description || ""}
                        onChange={handleChange}
                     />
                 </div>
@@ -66,7 +78,7 @@ const AddBookForm = () => {
                     <input className="form-control" id=""
                       type="Number" 
                       name='rent'
-                      value={bookBody.rent || ""}
+                      value={args.rent || ""}
                        onChange={handleChange}
                     />
                 </div>
@@ -75,7 +87,7 @@ const AddBookForm = () => {
                     <input className="form-control" id=""
                       type="text" 
                       name='author'
-                      value={bookBody.author || ""}
+                      value={args.author || ""}
                        onChange={handleChange}
                     />
                 </div>

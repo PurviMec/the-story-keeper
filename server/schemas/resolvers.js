@@ -97,14 +97,15 @@ const resolvers = {
           return { token, user };
             
       },
-      addBook: async (parent, args) => {
-        // const user = await User.findOne({email: args.email} )
+      addBook: async (parent, args, context) => {
+        //const user = await User.findOne({email: args.email} )
 
-        // if (user){
-          const newBook = await Book.create(args);
-          return newBook;
-        // }
-        // throw new AuthenticationError('You need to be logged in!');
+         if (context.user){
+          const addBook = await Book.create({...args, title: args.title, description: args.description, author: args.author, publish: args.publish, genere: args.genere, rent: args.rent});
+
+          return addBook;
+         };
+        throw new AuthenticationError('You need to be logged in!');
         
         // const newBook = await Book.create({ title: args.title, description: args.description, author: args.author, publish: args.publish, genere: args.genere, rent: args.rent})
         //return newBook;

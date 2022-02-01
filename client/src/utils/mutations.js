@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($reviewText: String!, $bookId: ID!) {
+  mutation addReview($reviewText: String!, $bookId: String!) {
     addReview(reviewText: $reviewText, bookId: $bookId) {
       _id
       reviews {
@@ -39,8 +39,8 @@ export const ADD_REVIEW = gql`
 `;
 
 export const ADD_BOOK = gql`
-  mutation addBook($title:String!, $description:String!, $author:String!, $rent:Int, $genere:String!){
-    addBook (title:$title, description:$description, author:$author, rent:$rent, genere:$genere){
+  mutation addBook($title:String!, $description:String!, $author:String!, $rent:Int, $genere:String!, $publish: String){
+    addBook (title:$title, description:$description, author:$author, rent:$rent, genere:$genere, publish:$publish){
       _id
       title
       description
@@ -50,9 +50,6 @@ export const ADD_BOOK = gql`
       publish
       reviews{
         _id
-        reviewText
-        username
-        createdAt
       }
     }
   }

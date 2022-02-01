@@ -4,17 +4,30 @@ import { useMutation } from '@apollo/client';
 import { ADD_REVIEW } from '../../utils/mutations';
 
 // import { useQuery  } from '@apollo/client';
-// import { QUERY_USER } from '../../utils/queries';
+import { QUERY_ME} from '../../utils/queries';
 
 const ReviewForm = ({ bookId }) => {
-  const [reviewText, setBody] = useState('');
+  const [reviewText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-  const [addReview, { error }] = useMutation(ADD_REVIEW);
+  const [addReview, { error }] = useMutation(ADD_REVIEW, {
+    update(cache, { data: { addReview } }) {
+      try {
+      
+        const { reviews } = cache.readQuery({ query: QUERY_ME });
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { reviews: [addReview, ...reviews] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  });
   // const { user }= useQuery(QUERY_USER);
 
   const handleChange = (event) => {
     if (event.target.value.length <= 280) {
-      setBody(event.target.value);
+      setText(event.target.value);
       setCharacterCount(event.target.value.length);
     }
   };
@@ -28,7 +41,7 @@ const ReviewForm = ({ bookId }) => {
       });
       
       // clear form value
-      setBody('');
+      setText('');
       setCharacterCount(0);
     } catch (e) {
       console.error(e);

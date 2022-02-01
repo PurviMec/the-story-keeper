@@ -66,7 +66,7 @@ const typeDefs = gql`
         favouriteList(input: favouriteList!): User
         removeFavouriteBook(bookId: ID!): User 
         borrowList(input: borrowList!): User
-        addBook(title:String!, description:String!, author:String!, rent:Int, genere:String!): Book
+        addBook(title:String!, description:String!, author:String!, rent:Int, genere:String!, publish:String): Book
         addReview(reviewText: String!, bookId: ID!): Book
     }
 `;

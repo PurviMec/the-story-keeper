@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 //import addBook from "../../images/addBook.png"
 import AddBookForm from "../AddBookForm";
-//import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
 
 const BookList = ({ books, title }) => {
@@ -13,11 +13,11 @@ const BookList = ({ books, title }) => {
   return (
     <main className="container">
       <div className="flex-row justify-space-between">
-        {/* {Auth.loggedIn() && ( */}
+        {Auth.loggedIn() && (
           <div className="col-12 mb-3">
           <AddBookForm />
           </div>
-        {/* )} */}
+         )}
       </div>  
 
       <div>
