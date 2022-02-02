@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import FavouriteList from '../components/FavouriteList';
-import BorrowList from '../components/BorrowList';
+//import BorrowList from '../components/BorrowList';
 
 //import Auth from "../utils/auth"
 import { useQuery } from '@apollo/client';
@@ -44,13 +44,7 @@ const Profile = (props) => {
             </div>
             <div className='col-lg-12 m-0'>
             <div className='flex-row'>
-                
-                <div className="col-5 mb-3 col-lg-6">
-                    <BorrowList
-                      borrowList={user.borrowList}
-                    />
-                </div>
-                <div className='col-5 mb-3 col-lg-6'>
+                <div className='col-5 mb-3 col-lg-10'>
                     <FavouriteList
                         favouriteList={user.favouriteList}
                     /> 

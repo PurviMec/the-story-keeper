@@ -42,10 +42,10 @@ const AddBookForm = () => {
     }
     return(
         <div className=' d-flex row justify-content-center m-4 '>
-            <p className="card-header text-center">
+            <h2 className="text-center">
                 Add New Book 
-            </p>
-            <form className="card form col-lg-6" onSubmit={handleFormSubmit}>
+            </h2>
+            <form className="card form col-lg-6 m-3" onSubmit={handleFormSubmit}>
                 <div className="mb-3 mt-3 ">
                     <label  className="form-label card-title">Book Title</label>
                     <input  className="form-control form-input" id="" 
@@ -91,7 +91,7 @@ const AddBookForm = () => {
                        onChange={handleChange}
                     />
                 </div>
-                <button type="submit" className ="btn-secondary btn">Submit</button>
+                <button type="submit" className ="btn-secondary btn mb-2">Submit</button>
             </form>
         </div>
 

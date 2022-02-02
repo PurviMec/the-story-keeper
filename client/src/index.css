@@ -89,8 +89,8 @@ nav a:hover {
 }
 .btn:hover,
 .pill:hover {
-  color: var(--secondary);
-  background-color: var(--dark);
+  color: rgb(8, 8, 8);
+  background-color: blue;
 }
 
 .btn:hover a,
@@ -103,7 +103,7 @@ nav a:hover {
 }
 
 /* CARDS */
-.card {
+/* .card {
   margin: 0 0 20px 0;
   border: 3px solid var(--dark);
   border-radius: var(--border-radius);
@@ -117,12 +117,12 @@ nav a:hover {
   background-color: var(--dark);
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-}
+} */
 
-.card-body {
-  padding: 2.5%;
+.card-text {
+  padding: 10px, 0, 10px, 30px;
   font-size: 1.4rem;
-}
+} 
 
 /* FORM */
 .form-label,
