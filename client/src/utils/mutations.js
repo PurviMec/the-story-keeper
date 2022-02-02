@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($reviewText: String!, $bookId: String!) {
+  mutation addReview($reviewText: String!, $bookId: ID!) {
     addReview(reviewText: $reviewText, bookId: $bookId) {
       _id
       reviews {
@@ -56,7 +56,7 @@ export const ADD_BOOK = gql`
 `;
 
 export const ADD_FAVOURITE = gql`
-  mutation favouriteList($input: favouriteList) {
+  mutation favouriteList($input: favouriteList!) {
     favouriteList(input: $input) {
       _id
       favouriteList {
@@ -75,7 +75,6 @@ export const REMOVE_FAVOURITE = gql`
     removeFavouriteBook(bookId: $bookId) {
       _id
       username
-      bookCount
       savedBooks {
         bookId
         authors

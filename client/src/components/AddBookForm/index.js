@@ -30,10 +30,11 @@ const AddBookForm = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(args);
+        console.log(typeof args, args);
+        args.rent = parseInt(args.rent); 
         try {
             await addBook ({
-                variables: { args }
+                variables: args
             });
             setArgs("");
         } catch (e) {

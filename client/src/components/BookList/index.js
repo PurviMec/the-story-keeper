@@ -26,9 +26,17 @@ const BookList = ({ books, title }) => {
   const [saveBook] = useMutation(ADD_FAVOURITE);
 
   const handleSaveBook = async (bookId) => {
+    console.log(bookId, 'this si sthe book id')
     // find the book in `searchedBooks` state by the matching id
-    const bookToSave = books.find((book) => book.bookId === bookId);
-
+    const bookToSave = books.find((book) => book._id === bookId);
+    console.log(bookToSave);
+    const payload = {
+      _id: bookToSave._id,
+      title: bookToSave.title,
+      description: bookToSave.description,
+      author: bookToSave.author,
+      publish: bookToSave.publish
+  }
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -39,7 +47,7 @@ const BookList = ({ books, title }) => {
     try {
       const response = await saveBook({
         variables: {
-          input: bookToSave,
+          input: payload,
         },
       });
 
@@ -92,7 +100,7 @@ const BookList = ({ books, title }) => {
                  {/* <p><Profile>Go to fav list</Profile> </p> */}
               </div>
               <div className="col-2">
-                <button onClick={() => handleSaveBook(book.bookId)}> 
+                <button onClick={() => handleSaveBook(book._id)}> 
                     <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="add favourite"/>
                 </button>  
               </div>
