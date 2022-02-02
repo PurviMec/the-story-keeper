@@ -2,13 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
-import { removeBookId, saveBookIds } from "../../utils/localStorage";
+//import { removeBookId, saveBookIds } from "../../utils/localStorage";
 import { QUERY_ME, QUERY_USER } from "../../utils/queries";
 import { REMOVE_FAVOURITE } from "../../utils/mutations";
 
 const FavouriteList = ({ favouriteList}) => {
-    
+  const saveBookIds = (bookIdArr) => {
+    if (bookIdArr.length) {
+      localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
+    } else {
+      localStorage.removeItem('saved_books');
+    }
+  };
 
+  const removeBookId = (bookId) => {
+    const savedBookIds = localStorage.getItem('saved_books')
+      ? JSON.parse(localStorage.getItem('saved_books'))
+      : null;
+  
+    if (!savedBookIds) {
+      return false;
+    }
+    const updatedSavedBookIds = savedBookIds?.filter((savedBookId) => savedBookId !== bookId);
+    localStorage.setItem('saved_books', JSON.stringify(updatedSavedBookIds));
+  
+    return true;
+  };
     const { loading, data } = useQuery(QUERY_ME, QUERY_USER);
     const userData = data?.me || data?.user || [];
 
@@ -39,14 +58,14 @@ const FavouriteList = ({ favouriteList}) => {
     return <h2>LOADING...</h2>;
   }
 
+  const savedBookIds = userData.favouriteList.map((book) => book._id);
+  saveBookIds(savedBookIds); 
+
   if (!favouriteList) {
     return <p className="bg-dark text-light p-3"> add some books!</p>;
   }
 
-  const savedBookIds = userData.favouriteList.map((book) => book.bookId);
-  saveBookIds(savedBookIds); 
-
-  console.log(favouriteList);
+  console.log(savedBookIds);
     return (
        
            

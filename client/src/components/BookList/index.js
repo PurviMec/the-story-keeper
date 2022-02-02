@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import addBook from "../../images/addBook.png"
 import AddBookForm from "../AddBookForm";
 import Auth from '../../utils/auth';
-import { saveBookIds, getSavedBookIds } from "../../utils/localStorage";
+//import { saveBookIds, getSavedBookIds } from "../../utils/localStorage";
 //import Profile from "../../pages/Profile";
 
 import { ADD_FAVOURITE } from "../../utils/mutations";
@@ -11,6 +11,22 @@ import { useMutation } from "@apollo/client";
 
 
 const BookList = ({ books, title }) => {
+  const getSavedBookIds = () => {
+    const savedBookIds = localStorage.getItem('saved_books')
+      ? JSON.parse(localStorage.getItem('saved_books'))
+      : [];
+  
+    return savedBookIds;
+  };
+  
+  const saveBookIds = (bookIdArr) => {
+    if (bookIdArr.length) {
+      localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
+    } else {
+      localStorage.removeItem('saved_books');
+    }
+  };
+
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
@@ -56,7 +72,7 @@ const BookList = ({ books, title }) => {
       }
 
       // if book successfully saves to user's account, save book id to state
-      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+      setSavedBookIds([...savedBookIds, bookToSave._id]);
     } catch (err) {
       console.error(err);
     }
