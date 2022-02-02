@@ -61,6 +61,10 @@ const FavouriteList = ({ favouriteList}) => {
   const savedBookIds = userData.favouriteList.map((book) => book._id);
   saveBookIds(savedBookIds); 
 
+  if (favouriteList){
+    console.log(favouriteList);
+  }
+
   if (!favouriteList) {
     return <p className="bg-dark text-light p-3"> add some books!</p>;
   }
