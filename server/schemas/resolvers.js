@@ -110,7 +110,7 @@ const resolvers = {
         const addBook = await Book.create({ ...args, title: args.title, description: args.description, author: args.author, publish: args.publish, genere: args.genere, rent: args.rent });
 
         return addBook;
-      };
+      }
       throw new AuthenticationError('You need to be logged in!');
 
       // const newBook = await Book.create({ title: args.title, description: args.description, author: args.author, publish: args.publish, genere: args.genere, rent: args.rent})
@@ -140,7 +140,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { favouriteList: input } },
           { new: true, runValidators: true }
-        );
+        ).populate("favouriteList");
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
