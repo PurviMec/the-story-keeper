@@ -15,7 +15,7 @@ const ReviewList = ({ reviews }) => {
               
               <span className='display-inline-block'> 
               {/* <Link to={`/profile/${review.username}`} style={{ fontWeight: 700 }}>{review.username}</Link> */}
-              <h6>{review.username} left review on {review.createdAt} </h6></span> 
+              <p>{review.username} left review on {review.createdAt} </p></span> 
               
             </p>
           ))}
