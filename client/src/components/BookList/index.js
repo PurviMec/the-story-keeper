@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import addBook from "../../images/addBook.png"
+import addBook from "../../images/addBook.png";
 import AddBookForm from "../AddBookForm";
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 //import { saveBookIds, getSavedBookIds } from "../../utils/localStorage";
 //import Profile from "../../pages/Profile";
 
 import { ADD_FAVOURITE } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 
-
 const BookList = ({ books, title }) => {
   const getSavedBookIds = () => {
-    const savedBookIds = localStorage.getItem('saved_books')
-      ? JSON.parse(localStorage.getItem('saved_books'))
+    const savedBookIds = localStorage.getItem("saved_books")
+      ? JSON.parse(localStorage.getItem("saved_books"))
       : [];
-  
+
     return savedBookIds;
   };
-  
+
   const saveBookIds = (bookIdArr) => {
     if (bookIdArr.length) {
-      localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
+      localStorage.setItem("saved_books", JSON.stringify(bookIdArr));
     } else {
-      localStorage.removeItem('saved_books');
+      localStorage.removeItem("saved_books");
     }
   };
 
@@ -42,7 +41,7 @@ const BookList = ({ books, title }) => {
   const [saveBook] = useMutation(ADD_FAVOURITE);
 
   const handleSaveBook = async (bookId) => {
-    console.log(bookId, 'this si sthe book id')
+    console.log(bookId, "this si sthe book id");
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = books.find((book) => book._id === bookId);
     console.log(bookToSave);
@@ -51,8 +50,8 @@ const BookList = ({ books, title }) => {
       title: bookToSave.title,
       description: bookToSave.description,
       author: bookToSave.author,
-      publish: bookToSave.publish
-  }
+      publish: bookToSave.publish,
+    };
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -83,46 +82,50 @@ const BookList = ({ books, title }) => {
   }
 
   return (
-    <main className="container">
+    <main className="display-flex">
       <div className="flex-row justify-space-between">
         {Auth.loggedIn() && (
           <div className="col-12 mb-3">
-          <AddBookForm />
+            <AddBookForm />
           </div>
-         )}
-      </div>  
+        )}
+      </div>
       <div>
-        <h3>{title}</h3>
+        <h2 className="text-center m-4 container">{title}</h2>
         {books &&
           books.map((book) => (
-            <div key={book._id} className="card  row">
-              <div className="col-12">
-              <Link to={`/book/${book._id}`}>
-                <h2 className="card-header">{book.title}</h2>
-              </Link>
-              </div>
-              <div className="card-body m-0 p-0 col-9">
-                <p>Genere: {book.genere}</p>
+            <div key={book._id} className="card row m-2 justify-space-between">
+              <div className="card-body m-1 col-12">
+                <div className="flex-row card-title col-12 ">
+                  <Link to={`/book/${book._id}`}>
+                    <h2 className="card-header">{book.title}</h2>
+                  </Link>
+                </div>
+                <div className="card-text col-lg-12">
+                  <p>Genere: {book.genere}</p>
 
-                <p>
-                  By {""}
-                  {book.author} On {book.publish}
-                  {""} Rent: {book.rent}
-                </p>
-                <p className="mb-0">
-                  Reviews: {book.reviews.length}
-                </p>
-                
-                 {/* <p><Profile>Go to fav list</Profile> </p> */}
-              </div>
-              <div className="col-2">
-                <button onClick={() => handleSaveBook(book._id)}> 
-                    <img src={addBook} className="text-align-right" style={{height: "30px"}}  alt="add favourite"/>
-                </button>  
+                  <p>
+                    By {""}
+                    {book.author} On {book.publish}
+                    {""} Rent: {book.rent}
+                  </p>
+                  <p className="mb-0">Reviews: {book.reviews.length}</p>
+
+                  <button onClick={() => handleSaveBook(book._id)}>
+                    <img
+                      src={addBook}
+                      className="text-align-right"
+                      style={{ height: "30px" }}
+                      alt="add favourite"
+                    />
+                  </button>
+
+                  {/* <p><Profile>Go to fav list</Profile> </p> */}
+                </div>
               </div>
             </div>
           ))}
-      </div>  
+      </div>
     </main>
   );
 };
