@@ -22,7 +22,7 @@ const SingleBook = (props) => {
   const book = data?.book || {};
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div page-headers>Loading...</div>;
   }
 
   return (
@@ -33,7 +33,6 @@ const SingleBook = (props) => {
         <div className="card-body row">
           <h5>Genere: {""} </h5>
           <span>{book.genere}</span>
-          Published on {""} {book.publish} {""} by {""} <h5> {""} </h5>
           {book.author}
           <p className="card-text">{book.description}</p>
           {/* <a href="#" className="card-link" alt="/">Rent</a>
