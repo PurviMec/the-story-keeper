@@ -31,9 +31,11 @@ const SingleBook = (props) => {
         <img src={singleBook} className="card-img-top book-img col-5" alt="/" />
         <h3 className=" col-5 card-title ">{book.title}</h3>
         <div className="card-body row">
-          <h5>Genere: {""} </h5>
-          <span>{book.genere}</span>
-          {book.author}
+          <p className="card-text">Genere: {""} {book.genere}</p>
+          
+          <p className="card-text">Author: {""} {book.author}</p>
+          <p className="card-text">Publish: {new Date().getFullYear()}</p>
+          
           <p className="card-text">{book.description}</p>
           {/* <a href="#" className="card-link" alt="/">Rent</a>
         <a href="#" className="card-link" alt="/">Add to favourite</a>    */}

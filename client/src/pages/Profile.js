@@ -6,17 +6,17 @@ import BorrowList from '../components/BorrowList';
 
 //import Auth from "../utils/auth"
 import { useQuery } from '@apollo/client';
-import { QUERY_ME, QUERY_USER } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
     
 
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    const { loading, data } = useQuery( QUERY_ME, {
         variables: { username: userParam },
     });
 
-    const user = data?.me || data?.user || {};
+    const user = data?.me || {};
 
     // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     //     return <Redirect to="/profile" />;
@@ -42,18 +42,11 @@ const Profile = (props) => {
                   Viewing {user.username}'s profile.
                 </h2>
             </div>
-           
-            
-                {/* <div className="col-5 mb-3 col-lg-6">
-                    <BorrowList
-                      borrowList={user.borrowList}
-                    />
-                </div> */}
-                <div className='col-12 mb-3'>
-                    <FavouriteList
-                        favouriteList={user.favouriteList}
-                    /> 
-                </div>   
+            <div className='col-12 mb-3'>
+                <FavouriteList
+                    favouriteList={user.favouriteList}
+                /> 
+            </div>   
     
         </div>
     );

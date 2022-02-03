@@ -106,22 +106,25 @@ const BookList = ({ books, title }) => {
 
                   <p>
                     Author: {""}By {""}
-                    {book.author} On {book.publish}
-                    
+                    <span className="mb-2">{book.author}</span>
                   </p>
+                  <p>Publish: {new Date().getFullYear()}</p>
                   <p className="mb-3">Reviews: {book.reviews.length}</p>
-
-                  <button className="addFavBtn" onClick={() => handleSaveBook(book._id)}>
-                    Add To Favourite
-                    {/* <img
-                      src={addBook}
-                      className="text-align-right"
-                      style={{ height: "30px" }}
-                      alt="add favourite"
-                    /> */}
-                  </button>
-
-                  {/* <p><Profile>Go to fav list</Profile> </p> */}
+                  {Auth.loggedIn() && (
+                    <button
+                      disabled={savedBookIds?.some(
+                        (savedBookId) => savedBookId === book._id
+                      )}
+                      className="addFavBtn"
+                      onClick={() => handleSaveBook(book._id)}
+                    >
+                      {savedBookIds?.some(
+                        (savedBookId) => savedBookId === book._id
+                      )
+                        ? "Saved Book!"
+                        : "Save this Book!"}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
