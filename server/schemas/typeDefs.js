@@ -28,7 +28,7 @@ const typeDefs = gql`
     }
 
     input favouriteList{
-        _id: ID
+        _id: ID!
         title: String
         description: String
         author: String

@@ -74,8 +74,22 @@ export const REMOVE_FAVOURITE = gql`
   mutation removeFavouriteBook($bookId: ID!) {
     removeFavouriteBook(bookId: $bookId) {
       _id
-      username
       favouriteList {
+        _id
+        title
+        description
+        author
+        publish
+      }
+    }
+  }
+`;
+
+export const ADD_BORROW = gql`
+  mutation borrowList($input: borrowList!) {
+    borrowList(input: $input) {
+      _id
+      borrowList {
         _id
         title
         description

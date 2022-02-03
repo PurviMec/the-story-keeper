@@ -44,11 +44,11 @@ const Profile = (props) => {
             </div>
            
             
-                {/* <div className="col-5 mb-3 col-lg-6">
+                <div className="col-5 mb-3 col-lg-6">
                     <BorrowList
                       borrowList={user.borrowList}
                     />
-                </div> */}
+                </div>
                 <div className='col-12 mb-3'>
                     <FavouriteList
                         favouriteList={user.favouriteList}

@@ -166,7 +166,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { borrowList: input } },
           { new: true, runValidators: true }
-        );
+        ).populate("borrowList");
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
