@@ -74,7 +74,6 @@ export const REMOVE_FAVOURITE = gql`
   mutation removeFavouriteBook($bookId: ID!) {
     removeFavouriteBook(bookId: $bookId) {
       _id
-      username
       favouriteList {
         _id
         title

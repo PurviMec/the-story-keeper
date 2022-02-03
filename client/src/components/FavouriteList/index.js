@@ -28,8 +28,8 @@ const FavouriteList = ({ favouriteList}) => {
   
     return true;
   };
-    const { loading, data } = useQuery(QUERY_ME, QUERY_USER);
-    const userData = data?.me || data?.user || [];
+    const { loading, data } = useQuery(QUERY_ME);
+    const userData = data?.me || [];
 
     const [removeBook, { error }] = useMutation(REMOVE_FAVOURITE);
 
