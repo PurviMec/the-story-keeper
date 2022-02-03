@@ -10,13 +10,13 @@ const ReviewList = ({ reviews }) => {
       <div className="card-body">
         {reviews &&
           reviews.map(review => (
-            <p className="pill m-3 p-3 card" key={review._id}>
+            <p className=" m-3 p-3 card" key={review._id}>
               {review.reviewText} {'//'} <br/>
               
               <span className='display-inline-block'> 
-              <Link to={`/profile/${review.username}`} style={{ fontWeight: 700 }}>{review.username}</Link>
-              {/* <h6>{review.username}</h6>  */}
-              left review on {review.createdAt}</span>
+              {/* <Link to={`/profile/${review.username}`} style={{ fontWeight: 700 }}>{review.username}</Link> */}
+              <h6>{review.username} left review on {review.createdAt} </h6></span> 
+              
             </p>
           ))}
       </div>

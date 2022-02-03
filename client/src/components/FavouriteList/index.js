@@ -51,7 +51,6 @@ const FavouriteList = ({ favouriteList}) => {
       console.error(error);
     }
   };
-
   
   // if data isn't here yet, say so
   if (loading) {
