@@ -55,7 +55,7 @@ const FavouriteList = ({ favouriteList}) => {
   
   // if data isn't here yet, say so
   if (loading) {
-    return <h2>LOADING...</h2>;
+    return <h2 className='page-headers'>LOADING...</h2>;
   }
 
   const savedBookIds = userData.favouriteList.map((book) => book._id);
@@ -66,25 +66,25 @@ const FavouriteList = ({ favouriteList}) => {
   }
 
   if (!favouriteList) {
-    return <p className="bg-dark text-light p-3"> add some books!</p>;
+    return <h2 className="bg-dark text-light p-3 page-headers"> add some books!</h2>;
   }
 
   console.log(savedBookIds);
     return (
        
            
-        <div className=''>
-            <h4>Favourite Books:</h4> 
-            <div className=''>
+        <div className='d-flex justify-content-center row'>
+            <div className='col-12'><h4 className='page-headers text-center mb-4'>Favourite Books:</h4></div> 
+         
                 {favouriteList.map(book => (
-                    <div className="btn w-100 display-block mb-2 card" key={book._id}>
-                    <p className='card-header'>{book.title}</p>   
-                    <Link to={`/book/${book._id}`} className='card-body'>ID: {book._id}</Link>
-                    <button onClick={() => handleDeleteBook(book.bookId)}>Remove </button>
+                    <div className="btn w-100 display-block mb-2 card col-9" key={book._id}>
+                    <p className='card-header m-3'>{book.title}</p> 
+                    <p className='book-text mt-3'>{book.author}</p>  
+                    <Link to={`/book/${book._id}`} className='card-body'> {book._id}</Link>
+                    <button onClick={() => handleDeleteBook(book.bookId)} className='btn-secondary'>Remove </button>
                     </div>
                 ))}
             </div>
-        </div>
            
 
        

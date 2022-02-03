@@ -41,7 +41,7 @@ const AddBookForm = () => {
   };
   return (
     <div className=" d-flex row justify-content-center m-4 ">
-      <h2 className=" text-center">Add New Book</h2>
+      <h2 className=" text-center page-headers mt-4">Add New Book</h2>
       <form className="card form col-lg-6 m-3" onSubmit={handleFormSubmit}>
         <div className="mb-3 mt-3 ">
           <label className="form-label card-title">Book Title</label>

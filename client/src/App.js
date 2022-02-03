@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+//import {bookcase.png} from "./images/bookcase.png"
 
 import {
   ApolloProvider,
@@ -45,14 +46,14 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start">
           <Header />
-          <div className="container">
-            
+          <div className="" style={{ backgroundImage: "url(/bookcase.png)" }}>
+            <div className="container">
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/book/:id" component={SingleBook} />
-            
+            </div>
           </div>
           <Footer />
         </div>

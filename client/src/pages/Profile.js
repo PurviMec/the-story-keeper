@@ -24,7 +24,7 @@ const Profile = (props) => {
     
     if (!user?.username) {
         return (
-          <h4>
+          <h4 page-headers>
             Please LogIn or Sign-Up.
           </h4>
         );
@@ -37,28 +37,24 @@ const Profile = (props) => {
 
     return (
         <div className='container w-100%'>
-            <div className="flex-row mb-3">
-                <h2 className="bg-dark text-secondary p-3 display-inline-block">
+            <div className="flex-row row mb-3">
+                <h2 className=" p-3 display-inline-block page-headers text-center">
                   Viewing {user.username}'s profile.
                 </h2>
             </div>
-            <div className='col-lg-12 m-0'>
-            <div className='flex-row'>
-                
-                <div className="col-5 mb-3 col-lg-6">
+           
+            
+                {/* <div className="col-5 mb-3 col-lg-6">
                     <BorrowList
                       borrowList={user.borrowList}
                     />
-                </div>
-                <div className='col-5 mb-3 col-lg-6'>
+                </div> */}
+                <div className='col-12 mb-3'>
                     <FavouriteList
                         favouriteList={user.favouriteList}
                     /> 
                 </div>   
-               
-                
-            </div>
-            </div>
+    
         </div>
     );
 };

@@ -7,8 +7,8 @@ body {
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
-  color: var(--dark);
-  background-color: #f3fffee1;
+  color: #00090a;
+  
 }
 
 h1,
@@ -89,8 +89,8 @@ nav a:hover {
 }
 .btn:hover,
 .pill:hover {
-  color: var(--secondary);
-  background-color: var(--dark);
+  color: black;
+  background-color: rgb(231, 164, 164);
 }
 
 .btn:hover a,
@@ -103,7 +103,7 @@ nav a:hover {
 }
 
 /* CARDS */
-.card {
+/* .card {
   margin: 0 0 20px 0;
   border: 3px solid var(--dark);
   border-radius: var(--border-radius);
@@ -117,7 +117,7 @@ nav a:hover {
   background-color: var(--dark);
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-}
+} */
 
 .card-body {
   padding: 2.5%;
@@ -158,5 +158,39 @@ nav a:hover {
 
 .form {
   justify-content: center;
+  background-color: whitesmoke;
 }
 
+.header {
+  background-color: white;
+}
+
+head-title {
+  padding-left: 30px;
+}
+
+.addFavBtn {
+  width: 30%;
+  background-color: #6c757d;
+  color: aliceblue;
+  border-radius: 4px;
+}
+
+.addFavBtn:hover,
+.pill:hover {
+  color: black;
+  background-color: rgb(231, 164, 164);
+}
+
+.addFavBtn:hover a,
+.pill:hover a {
+  color: var(--secondary);
+}
+
+.addFavBtn-inline {
+  display: inline;
+}
+
+.page-headers {
+  color: blanchedalmond;
+}

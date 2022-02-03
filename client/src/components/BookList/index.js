@@ -78,7 +78,7 @@ const BookList = ({ books, title }) => {
   };
 
   if (!books.length) {
-    return <h3>No books Yet</h3>;
+    return <h3 className="page-headers">No books Yet</h3>;
   }
 
   return (
@@ -91,7 +91,7 @@ const BookList = ({ books, title }) => {
         )}
       </div>
       <div>
-        <h2 className="text-center m-4 container">{title}</h2>
+        <h2 className="text-center m-4 container page-headers">{title}</h2>
         {books &&
           books.map((book) => (
             <div key={book._id} className="card row m-2 justify-space-between">
@@ -105,19 +105,20 @@ const BookList = ({ books, title }) => {
                   <p>Genere: {book.genere}</p>
 
                   <p>
-                    By {""}
+                    Author: {""}By {""}
                     {book.author} On {book.publish}
-                    {""} Rent: {book.rent}
+                    
                   </p>
-                  <p className="mb-0">Reviews: {book.reviews.length}</p>
+                  <p className="mb-3">Reviews: {book.reviews.length}</p>
 
-                  <button onClick={() => handleSaveBook(book._id)}>
-                    <img
+                  <button className="addFavBtn" onClick={() => handleSaveBook(book._id)}>
+                    Add To Favourite
+                    {/* <img
                       src={addBook}
                       className="text-align-right"
                       style={{ height: "30px" }}
                       alt="add favourite"
-                    />
+                    /> */}
                   </button>
 
                   {/* <p><Profile>Go to fav list</Profile> </p> */}
