@@ -75,9 +75,9 @@ const BookList = ({ books, title }) => {
     }
   };
 
-  if (!books.length) {
-    return <h3 className="page-headers">No books Yet</h3>;
-  }
+  // if (!books.length) {
+  //   return <h3 className="page-headers">No books Yet</h3>;
+  // }
 
   return (
     <main className="display-flex">
