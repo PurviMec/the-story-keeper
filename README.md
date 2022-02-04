@@ -45,6 +45,7 @@ Story keeper is a app for book lovers to read books for free and add books for o
 1. Install apollo graph ql sand-box playground to test.
 
 ## Screenshots
+<img width="1163" alt="Screen Shot 2022-02-03 at 11 31 37 PM" src="https://user-images.githubusercontent.com/86253830/152474370-b391c286-9aa1-458e-b961-ffb2e00d0bd9.png">
 
 
 ## Contributors
