@@ -28,17 +28,15 @@ const BookList = ({ books, title }) => {
 
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+  
   useEffect(() => {
-    // let isMounted = true; // note this flag denote mount status
+  
     return () => {
       saveBookIds(savedBookIds);
-      // isMounted = false;
     };
   });
 
-  const [saveBook] = useMutation(ADD_FAVOURITE);
+  const [favouriteList] = useMutation(ADD_FAVOURITE);
 
   const handleSaveBook = async (bookId) => {
     console.log(bookId, "this si sthe book id");
@@ -60,7 +58,7 @@ const BookList = ({ books, title }) => {
     }
 
     try {
-      const response = await saveBook({
+      const response = await favouriteList({
         variables: {
           input: payload,
         },

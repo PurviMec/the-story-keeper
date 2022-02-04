@@ -26,10 +26,10 @@ const SingleBook = (props) => {
   }
 
   return (
-    <main className="row container mt-4">
-      <div className="card m-3 flex-column col-10">
-        <img src={singleBook} className="card-img-top book-img col-5" alt="/" />
-        <h3 className=" col-5 card-title ">{book.title}</h3>
+    <main className=" container mt-4">
+      <div className="card m-3 card row mt-4">
+        <div className="col-2"><img src={singleBook} className="book-img" alt="/" /></div>
+        <div className="col-10"><h3 className=" col-5 card-title ">{book.title}</h3></div>
         <div className="card-body row">
           <p className="card-text">Genere: {""} {book.genere}</p>
           

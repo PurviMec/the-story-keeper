@@ -2,15 +2,15 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import FavouriteList from '../components/FavouriteList';
-import BorrowList from '../components/BorrowList';
+//import BorrowList from '../components/BorrowList';
 
-//import Auth from "../utils/auth"
+import Auth from "../utils/auth"
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_USER } from '../utils/queries';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
-    
+
 
     const { loading, data } = useQuery( QUERY_ME, QUERY_USER,{
         variables: { username: userParam },
@@ -18,9 +18,9 @@ const Profile = (props) => {
 
     const user = data?.me || data?.user || {};
 
-    // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    //     return <Redirect to="/profile" />;
-    // }
+  if (loading) {
+    return <div>Loading...</div>;
+   }
     
     if (!user?.username) {
         return (
@@ -29,10 +29,8 @@ const Profile = (props) => {
           </h4>
         );
     }
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    console.log("this is user", user);
+    
 
 
     return (
