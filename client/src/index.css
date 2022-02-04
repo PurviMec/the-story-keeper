@@ -1,3 +1,27 @@
+:root {
+  --primary: #497573;
+  --secondary: #99f7f2;
+  --tertiary: #b2c2c1;
+  --quatrinary: #cadbda;
+  --light: #e1f5f4;
+  --dark: #6c7575;
+  --error: rgb(228, 46, 1);
+  --border-radius: 0.3rem;
+  --spacing-one: calc(1rem * 0.25);
+  --spacing-two: calc(1rem * 0.5);
+  --spacing-three: 1rem;
+  --spacing-four: calc(1rem * 1.5);
+  --spacing-five: calc(1rem * 3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
 
 
 body {
@@ -146,7 +170,6 @@ nav a:hover {
 
 .container {
   width: 100%;
- 
   margin-left: auto;
   margin-right: auto;
 }
@@ -162,7 +185,7 @@ nav a:hover {
 }
 
 .header {
-  background-color: white;
+  background-color: #dee1e2;
 }
 
 head-title {
@@ -201,3 +224,38 @@ head-title {
   width: 100%;
   padding: 5px;
 }
+
+.pop-img {
+  height: 50px;
+  width: 50px;
+  background: transparent;
+  border: none;
+}
+
+.card-pop {
+  
+  height: 400px;
+  width: 600px;
+}
+
+.pop-btn {
+  background: transparent;
+  border: none;
+}
+ footer {
+   background-color: #dee1e2;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+ }
+
+ .sign-up  {
+   margin-bottom: 20px;
+   padding-bottom: 150px;
+ }
+
+ .sign-in {
+   padding-top: 160px;
+   padding-bottom: 160px;
+ }
+

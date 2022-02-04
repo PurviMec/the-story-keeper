@@ -89,12 +89,12 @@ const BookList = ({ books, title }) => {
         )}
       </div>
       <div>
-        <h2 className="text-center m-4 container page-headers">{title}</h2>
+        <h2 className="text-center container page-headers">{title}</h2>
         {books &&
           books.map((book) => (
             
             <div key={book._id} className="card row m-2 justify-space-between">
-              <h2 className="text-center m-4 container page-headers">{title}</h2>
+              
               <div className="card-body m-1 col-12">
                 <div className="flex-row card-title col-12 ">
                   <Link to={`/book/${book._id}`}>
