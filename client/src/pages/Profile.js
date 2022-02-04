@@ -6,17 +6,17 @@ import BorrowList from '../components/BorrowList';
 
 //import Auth from "../utils/auth"
 import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_USER } from '../utils/queries';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
     
 
-    const { loading, data } = useQuery( QUERY_ME, {
+    const { loading, data } = useQuery( QUERY_ME, QUERY_USER,{
         variables: { username: userParam },
     });
 
-    const user = data?.me || {};
+    const user = data?.me || data?.user || {};
 
     // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     //     return <Redirect to="/profile" />;

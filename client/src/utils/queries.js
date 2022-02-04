@@ -57,6 +57,7 @@ export const QUERY_ME = gql`
                 publish
             }
             favouriteList{
+                _id
                 title
                 description
                 author
