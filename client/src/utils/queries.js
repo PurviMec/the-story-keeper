@@ -59,18 +59,12 @@ export const QUERY_ME = gql`
             }
             favouriteList{
                 _id
-            title
-            description
-            author
-            publish
-            rent
-            genere
-            reviews {
-                _id
-                reviewText
-                username
-                createdAt 
-            }
+
+                title
+                description
+                author
+                publish
+
             }
         }
     }
