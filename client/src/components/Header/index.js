@@ -11,14 +11,14 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className=" container flex-row display-inline row">
+      <div className=" container flex-row display-inline p-0 m-0 row">
             <div className='col-2 mt-3'><img src={appLogo} className='logo' alt="App-logo"></img></div>
-            <div className='col-7 text-center head-title mt-3'>
+            <div className='col-8 text-center head-title mt-3'>
               <Link to="/">
               <h1 className='mt-3 '>THE STORY KEEPER</h1>
             </Link>
             </div>
-          <div className='col-3 mt-3' >
+          <div className='col-2 mt-3' >
             <nav className="text-center m-2 mt-4">  
               { Auth.loggedIn() ? (
                 <>

@@ -34,7 +34,7 @@ const Profile = (props) => {
 
 
     return (
-        <div className='container w-100%'>
+        <div className='container w-100% m-0 p-0'>
             <div className="flex-row row mb-3">
                 <h2 className=" p-3 display-inline-block page-headers text-center">
                   Viewing {user.username}'s profile.

@@ -44,9 +44,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <div style={{ backgroundImage: "url(/bookcase.png)" }}>
         <div className="flex-column justify-flex-start">
           <Header />
-          <div className="" style={{ backgroundImage: "url(/bookcase.png)" }}>
+          <div className="" >
             <div className="container">
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -56,6 +57,7 @@ function App() {
             </div>
           </div>
           <Footer />
+        </div>
         </div>
       </Router>
     </ApolloProvider>

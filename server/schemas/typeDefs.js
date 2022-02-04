@@ -64,7 +64,7 @@ const typeDefs = gql`
         login(email: String!, password: String!) :Auth
         addUser(username: String!, email: String!, password: String!) :Auth
         favouriteList(input: favouriteList!): User
-        removeFavouriteBook(bookId: ID!): User 
+        removeFavouriteBook(_id: ID!): User 
         borrowList(input: borrowList!): User
         addBook(title:String!, description:String!, author:String!, rent:Int, genere:String!, publish:String): Book
         addReview(reviewText: String!, bookId: ID!): Book
