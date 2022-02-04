@@ -11,8 +11,8 @@ const Footer = () => {
       <div className="container">
         &copy; {new Date().getFullYear()} The Story Keeper App
       </div>
-      <div>Contact Info: </div>
-        <Popup trigger={<button> <img src={Gmail} alt='/G'/> </button>} position="top center">
+      {/* <div>Contact Info: </div> */}
+        {/* <Popup trigger={<button> <img src={Gmail} alt='/G'/> </button>} position="top center">
           <div className='card pop-up-card'>
             <p>Purvi Mecwan: princy.mecwan@gmail.com</p>
             <p>Jonelle Harris: jonelle.harris04@gmail.com</p>
@@ -30,7 +30,7 @@ const Footer = () => {
           <div className='card'>
             <p>gitHub URL:  </p>
           </div>
-        </Popup>
+        </Popup> */}
 
     </footer>
   );
