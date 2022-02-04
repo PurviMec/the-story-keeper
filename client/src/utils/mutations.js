@@ -7,6 +7,13 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        favouriteList{
+          _id
+          title
+          description
+          author
+          publish
+        }
       }
     }
   }
@@ -19,6 +26,7 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        
       }
     }
   }
@@ -59,13 +67,16 @@ export const ADD_FAVOURITE = gql`
   mutation favouriteList($input: favouriteList!) {
     favouriteList(input: $input) {
       _id
-      favouriteList {
+      title
+      description
+      author
+      rent
+      genere
+      publish
+      reviews{
         _id
-        title
-        description
-        author
-        publish
       }
+  
     }
   }
 `;

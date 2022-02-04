@@ -51,16 +51,26 @@ export const QUERY_ME = gql`
             username
             email
             borrowList{
+                _id
                 title
                 description
                 author
                 publish
             }
             favouriteList{
-                title
-                description
-                author
-                publish
+                _id
+            title
+            description
+            author
+            publish
+            rent
+            genere
+            reviews {
+                _id
+                reviewText
+                username
+                createdAt 
+            }
             }
         }
     }
@@ -81,10 +91,18 @@ export const QUERY_USER = gql`
             }
             favouriteList{
                 _id
-                title
-                description
-                author
-                publish
+            title
+            description
+            author
+            publish
+            rent
+            genere
+            reviews {
+                _id
+                reviewText
+                username
+                createdAt 
+            }
             }
         }
     }

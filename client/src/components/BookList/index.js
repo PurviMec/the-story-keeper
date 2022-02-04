@@ -36,7 +36,7 @@ const BookList = ({ books, title }) => {
     };
   });
 
-  const [saveBook] = useMutation(ADD_FAVOURITE);
+  const [favouriteList] = useMutation(ADD_FAVOURITE);
 
   const handleSaveBook = async (bookId) => {
     console.log(bookId, "this si sthe book id");
@@ -58,7 +58,7 @@ const BookList = ({ books, title }) => {
     }
 
     try {
-      const response = await saveBook({
+      const response = await favouriteList({
         variables: {
           input: payload,
         },
