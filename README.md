@@ -54,8 +54,8 @@ Story keeper is a app for book lovers to read books for free and add books for o
   GitHub: [PurviMec](https://github.com/PurviMec) 
   
 * Geoffrey Mobula | 
-  Contact email: princy.mecwan94@gmail.com |
-  GitHub: [Geoffrey M](jeffmlb91@fmail.com)
+  Contact email: jeffmlb91@gmail.com |
+  GitHub: [Geoffrey M](https://github.com/jeffmlb91)
   
 * Jonelle Herris | 
   Contact email:jonelle.harris04@gmail.com|
