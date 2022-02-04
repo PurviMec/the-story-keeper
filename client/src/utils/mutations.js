@@ -67,16 +67,16 @@ export const ADD_FAVOURITE = gql`
   mutation favouriteList($input: favouriteList!) {
     favouriteList(input: $input) {
       _id
-      title
-      description
-      author
-      rent
-      genere
-      publish
-      reviews{
+      username
+      favouriteList {
         _id
+        title
+        description
+        author
+        publish
       }
   
+      
     }
   }
 `;
